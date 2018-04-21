@@ -27,7 +27,7 @@ f (x,y) = maximum [f' horiz, f' vert, f' d1, f' d2]
    allOk cs = all (\(x,y) -> x >= 0 && x < 20 && y >= 0 && y < 20) cs 
    horiz = [(x,y), (x+1,y), (x+2,y), (x+3,y)]
    vert  = [(x,y), (x,y+1), (x,y+2), (x,y+3)]
-   d1    = [(x,y), (x-1,y+1), (x-2,y+2), (x-3,y+3), (x-4,y+4)]
-   d2    = [(x,y), (x+1,y+1), (x+2,y+2), (x+3,y+3), (x+4,y+4)]
+   d1    = [(x,y), (x-1,y+1), (x-2,y+2), (x-3,y+3)]
+   d2    = [(x,y), (x+1,y+1), (x+2,y+2), (x+3,y+3)]
 
 solve = maximum [f (x,y) | x <- [0..19], y <- [0..19]]
