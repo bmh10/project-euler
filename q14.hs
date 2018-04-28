@@ -1,10 +1,13 @@
-import Data.Ord
+import Data.Array
 import Data.List
-
-solve = maximumBy (comparing snd) $ zip [1..] $ map coll [1..1000000]
-
-coll n = coll' n 0
-coll' n l
- | n == 1         = l+1
- | n `mod` 2 == 0 = coll' (n `div` 2) (l+1)
- | otherwise      = coll' ((3*n)+1) (l+1)
+import Data.Ord (comparing)
+ 
+cols n = a
+  where 
+  a = listArray (1,n) $ 0 : map col [2..n]
+  col x = 
+      if y <= n then 1 + a ! y else 1 + col y
+        where 
+        y = if even x then x `div` 2 else 3 * x + 1
+ 
+solve =  maximumBy (comparing snd) . assocs . cols $ 1000000
