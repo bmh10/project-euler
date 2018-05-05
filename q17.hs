@@ -1,4 +1,4 @@
-
+solve = sum $ map (length . filter (/=' ') . toWords) [1..1000]
 
 toWords :: Int -> String
 toWords 0 = ""
