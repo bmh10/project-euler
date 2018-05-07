@@ -1,4 +1,9 @@
-solve = map (\x -> 1/x) [1..1000]
+import Numeric
+
+solve = map showFullPrecision $ map (\x -> 1/x) [1..1000]
+
+showFullPrecision :: Double -> String
+showFullPrecision x = showFFloat Nothing x ""
 
 cycleLen n = cycleLen' n ((length $ show n) - 1)
 
