@@ -1,5 +1,7 @@
 import Data.Char
 
-fact n = product [1..n]
+solve = sum $ filter test [3..100000]
 
-test n = sum $ map (fact . digitToInt) (show n)
+test n = n == (sum $ map (fact . digitToInt) (show n))
+
+fact n = product [1..n]
