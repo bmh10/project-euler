@@ -1,6 +1,6 @@
 import Data.List
 
-solve = find matches [x | x <- [1..]]
+solve = find matches [x | x <- [1000000000..]]
 
 matches x = everyOtherDigit (show (x*x)) == "1234567890"
 
