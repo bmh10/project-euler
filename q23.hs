@@ -1,4 +1,5 @@
-
+--TODO
+allAbundant = filter isAbundant [1..28123]
 isAbundant x = (sum $ divisors x) > x
 isPerfect x = (sum $ divisors x) == x
 
