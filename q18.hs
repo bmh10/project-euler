@@ -1,19 +1,17 @@
-tri = [[[3]],[[7],[4]],[[2],[4],[6]],[[8],[5],[9],[3]]]
+ex1 = [[3],[7,4],[2,4,6],[8,5,9,3]]
+ex2 = [[75],[95, 64],[17, 47, 82],[18, 35, 87, 10],[20, 04, 82, 47, 65],[19, 01, 23, 75, 03, 34],[88, 02, 77, 73, 07, 63, 67],[99, 65, 04, 28, 06, 16, 70, 92],[41, 41, 26, 56, 83, 40, 80, 70, 33],[41, 48, 72, 33, 47, 32, 37, 16, 94, 29],[53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14],[70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57],[91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48],[63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],[04, 62, 98, 27, 23, 09, 70, 98, 73, 93, 38, 53, 60, 04, 23]]
 
-f (xs:xss) = xs -- TODO
+solve = maximum $ f ex2 [] 0
 
+f [xs] ys' idx = xs
+f ((x:xs):ys:rest) ys' idx
+ | null xs = f (ys'':rest) [] 0
+ | otherwise = f (xs:ys:rest) ys'' (idx+1)
+  where y1' = x+y1
+        y2' = x+y2
+        ys'' = if (safeLast ys' < y1') then (safeInit ys'++[y1', y2']) else (ys'++[y2'])
+        y1 = ys!!idx
+        y2 = ys!!(idx+1)
 
-foldDown xs1 xs2 = xs1
-
-
-ex1 = [[[1]], [[2],[3]]]
-
-f1 ((x:xs):xs2:xss) idx
- -- | length xs == 1 = map (add x) xs2
- | otherwise = [add x (xs2!!idx), add x (xs2!!(idx+1))]
-
-add [x] [y] = [x+y]
---add xs ys = 
-
-
-childIdx n = [n, n+1]
+safeLast xs = if null xs then 0 else last xs
+safeInit xs = if null xs then [] else init xs
